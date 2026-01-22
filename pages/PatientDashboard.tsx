@@ -344,7 +344,7 @@ export const PatientDashboard: React.FC = () => {
                   </div>
                   <div>
                      <h3 className="font-bold text-red-800">Security Alert: Emergency Access Detected</h3>
-                     <p className="text-sm text-red-600">Your profile was accessed via Emergency Override. Please review the blockchain ledger for details.</p>
+                     <p className="text-sm text-red-600">Your profile was accessed via Emergency Override. Please review the security logs for details.</p>
                   </div>
                </div>
             )}

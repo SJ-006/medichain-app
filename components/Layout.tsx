@@ -20,7 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 MediChain
               </span>
             </div>
-            
+
             <div className="flex items-center gap-6">
               {currentUser && (
                 <>
@@ -30,16 +30,16 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                   </div>
 
                   {currentUser.role === 'DOCTOR' && (
-                     <button 
-                     onClick={toggleGeoFence}
-                     className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${isGeoFenced ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}
-                   >
-                     <MapPin size={12} />
-                     {isGeoFenced ? 'Loc: Hospital' : 'Loc: Away'}
-                   </button>
+                    <button
+                      onClick={toggleGeoFence}
+                      className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${isGeoFenced ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}
+                    >
+                      <MapPin size={12} />
+                      {isGeoFenced ? 'Loc: Hospital' : 'Loc: Away'}
+                    </button>
                   )}
 
-                  <button 
+                  <button
                     onClick={logout}
                     className="p-2 text-slate-500 hover:text-danger transition-colors"
                   >
@@ -56,17 +56,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
 
-      {/* Footer / Status Bar */}
-      <div className="fixed bottom-0 w-full bg-slate-900 text-slate-400 text-xs py-2 px-6 flex justify-between items-center z-50">
-        <div className="flex items-center gap-2">
-          <ShieldCheck size={14} className="text-green-500" />
-          <span>System Integrity: Verified</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Database size={14} />
-          <span>Blockchain Node: Active (Simulated)</span>
-        </div>
-      </div>
+
     </div>
   );
 };

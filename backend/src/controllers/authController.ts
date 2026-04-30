@@ -1,12 +1,19 @@
+import 'dotenv/config';
 import { Request, Response } from 'express';
 import { User, UserRole } from '../models/User';
 import { DoctorProfile, Specialty } from '../models/DoctorProfile';
 import { sendOTP, verifyOTP } from '../services/smsService';
 import jwt from 'jsonwebtoken';
 
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+    throw new Error('Missing required environment variable: JWT_SECRET');
+}
+
 // Generate JWT
 const generateToken = (id: number) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET || 'secret', { expiresIn: '1d' });
+    return jwt.sign({ id }, JWT_SECRET, { expiresIn: '1d' });
 };
 
 // 1. Register Patient

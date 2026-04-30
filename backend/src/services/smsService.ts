@@ -6,8 +6,6 @@ import fs from 'fs';
 import path from 'path';
 dotenv.config();
 
-const MASTER_OTP = '123456'; // Mock OTP for reliable testing
-
 export const sendOTP = async (phone: string): Promise<boolean> => {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const hash = crypto.createHash('sha256').update(otp).digest('hex');
@@ -27,7 +25,7 @@ export const sendOTP = async (phone: string): Promise<boolean> => {
         fs.appendFileSync(path.join(logPath, 'otp.log'), `${phone}:${otp}\n`);
 
         const apiKey = process.env.FAST2SMS_API_KEY;
-        if (!apiKey || apiKey === 'YOUR_FAST2SMS_API_KEY_HERE') {
+        if (!apiKey) {
             console.log('Fast2SMS API Key missing or default. Skipping real SMS.');
             return true;
         }
@@ -58,12 +56,6 @@ export const sendOTP = async (phone: string): Promise<boolean> => {
 };
 
 export const verifyOTP = async (phone: string, code: string): Promise<boolean> => {
-    // MASTER OTP CHECK
-    if (code === MASTER_OTP) {
-        console.log('Master OTP used for login.');
-        return true;
-    }
-
     const hash = crypto.createHash('sha256').update(code).digest('hex');
     const otpRecord = await OTP.findOne({
         where: { phone, codeHash: hash, used: false },

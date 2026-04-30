@@ -1,12 +1,9 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
 import { connectDB, sequelize } from './config/database';
 import router from './routes';
-import path from 'path';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;

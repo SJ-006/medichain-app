@@ -1,9 +1,10 @@
+import 'dotenv/config';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import FormData from 'form-data';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const BASE_URL = process.env.API_URL || 'http://localhost:3000/api';
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
